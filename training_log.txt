@@ -1,0 +1,107 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793955112.479248     421 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1793955113.734430     421 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+Raw shape: (5572, 2)
+Class counts:
+ Category
+ham     4825
+spam     747
+Name: count, dtype: int64
+Duplicate rows: 403
+Shape after removing duplicates: (5169, 2)
+Spam share (%): 12.63
+Train: 3618 | Test: 1551
+Sequence length (95th percentile): 33
+
+===== TF-IDF + Linear SVM =====
+              precision    recall  f1-score   support
+
+         ham     0.9840    0.9978    0.9908      1355
+        spam     0.9831    0.8878    0.9330       196
+
+    accuracy                         0.9839      1551
+   macro avg     0.9835    0.9428    0.9619      1551
+weighted avg     0.9839    0.9839    0.9835      1551
+
+Epoch 1/15
+91/91 - 2s - 17ms/step - accuracy: 0.8127 - loss: 0.4437 - val_accuracy: 0.8674 - val_loss: 0.4157
+Epoch 2/15
+91/91 - 0s - 5ms/step - accuracy: 0.9779 - loss: 0.1129 - val_accuracy: 0.8674 - val_loss: 0.3671
+Epoch 3/15
+91/91 - 0s - 4ms/step - accuracy: 0.9879 - loss: 0.0649 - val_accuracy: 0.8674 - val_loss: 0.3569
+Epoch 4/15
+91/91 - 0s - 4ms/step - accuracy: 0.9841 - loss: 0.0707 - val_accuracy: 0.9075 - val_loss: 0.2248
+Epoch 5/15
+91/91 - 0s - 4ms/step - accuracy: 0.9855 - loss: 0.0582 - val_accuracy: 0.9282 - val_loss: 0.2065
+Epoch 6/15
+91/91 - 1s - 7ms/step - accuracy: 0.9914 - loss: 0.0368 - val_accuracy: 0.9517 - val_loss: 0.1666
+Epoch 7/15
+91/91 - 1s - 7ms/step - accuracy: 0.9934 - loss: 0.0303 - val_accuracy: 0.9641 - val_loss: 0.1405
+Epoch 8/15
+91/91 - 1s - 6ms/step - accuracy: 0.9955 - loss: 0.0183 - val_accuracy: 0.9696 - val_loss: 0.1281
+Epoch 9/15
+91/91 - 0s - 4ms/step - accuracy: 0.9962 - loss: 0.0134 - val_accuracy: 0.9710 - val_loss: 0.1308
+Epoch 10/15
+91/91 - 0s - 4ms/step - accuracy: 0.9990 - loss: 0.0062 - val_accuracy: 0.9724 - val_loss: 0.1358
+
+===== Dense NN =====
+              precision    recall  f1-score   support
+
+         ham     0.9769    0.9985    0.9876      1355
+        spam     0.9880    0.8367    0.9061       196
+
+    accuracy                         0.9781      1551
+   macro avg     0.9824    0.9176    0.9468      1551
+weighted avg     0.9783    0.9781    0.9773      1551
+
+Epoch 1/15
+91/91 - 3s - 33ms/step - accuracy: 0.8829 - loss: 0.3445 - val_accuracy: 0.9572 - val_loss: 0.1682
+Epoch 2/15
+91/91 - 2s - 22ms/step - accuracy: 0.9883 - loss: 0.0449 - val_accuracy: 0.9751 - val_loss: 0.1311
+Epoch 3/15
+91/91 - 1s - 15ms/step - accuracy: 0.9969 - loss: 0.0140 - val_accuracy: 0.9765 - val_loss: 0.1396
+Epoch 4/15
+91/91 - 1s - 13ms/step - accuracy: 0.9993 - loss: 0.0067 - val_accuracy: 0.9779 - val_loss: 0.1342
+
+===== GRU =====
+              precision    recall  f1-score   support
+
+         ham     0.9840    0.9963    0.9901      1355
+        spam     0.9721    0.8878    0.9280       196
+
+    accuracy                         0.9826      1551
+   macro avg     0.9780    0.9420    0.9590      1551
+weighted avg     0.9825    0.9826    0.9823      1551
+
+Epoch 1/15
+91/91 - 3s - 30ms/step - accuracy: 0.9022 - loss: 0.3376 - val_accuracy: 0.9613 - val_loss: 0.1413
+Epoch 2/15
+91/91 - 2s - 25ms/step - accuracy: 0.9872 - loss: 0.0517 - val_accuracy: 0.9696 - val_loss: 0.1105
+Epoch 3/15
+91/91 - 1s - 14ms/step - accuracy: 0.9959 - loss: 0.0188 - val_accuracy: 0.9613 - val_loss: 0.1230
+Epoch 4/15
+91/91 - 1s - 16ms/step - accuracy: 0.9979 - loss: 0.0120 - val_accuracy: 0.9724 - val_loss: 0.1278
+
+===== LSTM =====
+              precision    recall  f1-score   support
+
+         ham     0.9875    0.9926    0.9901      1355
+        spam     0.9471    0.9133    0.9299       196
+
+    accuracy                         0.9826      1551
+   macro avg     0.9673    0.9529    0.9600      1551
+weighted avg     0.9824    0.9826    0.9825      1551
+
+
+===== Model comparison (test set, spam = positive class) =====
+                     Accuracy  Precision  Recall      F1
+TF-IDF + Linear SVM    0.9839     0.9831  0.8878  0.9330
+LSTM                   0.9826     0.9471  0.9133  0.9299
+GRU                    0.9826     0.9721  0.8878  0.9280
+Dense NN               0.9781     0.9880  0.8367  0.9061
+
+Best model by F1: TF-IDF + Linear SVM
+Confusion matrix (rows = actual, cols = predicted):
+ [[1352    3]
+ [  22  174]]
